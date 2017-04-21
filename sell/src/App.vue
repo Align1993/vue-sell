@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div class="main">
    <v-header></v-header>
   </div>
 </template>
