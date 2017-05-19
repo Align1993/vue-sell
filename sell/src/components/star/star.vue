@@ -1,10 +1,11 @@
 <template>
   <div class="satr" :class="starType">
-  	<span v-for="itemClass in itemClasses" :class="itemClass" class="star-item"></span>
+  	<span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item" key="index"></span>
   </div> 
 </template>
 
 <script type="text/ecmascript-6">
+@import "../../common/stylus/mixin.styl"
 const length = 5;
 const CLS_ON = "on";
 const CLS_HALF = "half";
@@ -26,7 +27,18 @@ const CLS_OFF = "off";
         let result = [];
         let score = Math.floor(this.score * 2) / 2;
         let hasDecimal = score % 1 !== 0;
-      }
+        let integer = Math.floor(score);
+        for(let i = 0;i < integer;i++) {
+        result.push(CLS_ON);
+        }
+        if(hasDecimal) {
+        result.push(CLS_HALF);
+        }
+        while(result.length < LENGTH) {
+        result.push(CLS_OFF); 
+        }
+        return result;
+       }
     }
   };
 </script>
